@@ -4,7 +4,7 @@ const header = ref('App Lista de compras');
 const items = ref([
   {id: 1, label: '10 bolillos'},
   {id: 2, label: '1 lata de frijoles'},
-  {id: 3, label: '2 latas de atún'}
+  {id: 3, label: '2 lata de atún'}
 ]);
 const newItem = ref('');
 const newItemHighPriority = ref(false);
@@ -14,7 +14,7 @@ const newItemHighPriority = ref(false);
   <h1> <i class="material-icons shopping-cart-icon">local_mall</i> {{ header }}</h1>
   <div class="add-item form">
     <!-- Input de Nuevo Articulo -->
-    <input v-model.trim="newItem" type="text" placeholder="Ingresar nuevo articulo">
+    <input v-on:keyup.enter="items.push({id: items.length + 1, label: newItem}) " v-model.trim="newItem" type="text" placeholder="Ingresar nuevo articulo">
     <!-- Check Boxes -->
     <label>
       <input v-model="newItemHighPriority" 
@@ -23,7 +23,7 @@ const newItemHighPriority = ref(false);
     </label>
     {{ newItemHighPriority ? "🔥" : "🧊" }}
     <!-- Boton de UI -->
-    <button v-on:click="items.push({id: items.length + 1, label: newItem})" class="btn btn-primary">Salvar Articulo</button>
+    <button v-on:click="items.push({id: items.length + 1, label: newItem}) " class="btn btn-primary">Salvar Articulo</button>
   </div>
   <ul>
     <li v-for="{ id, label } in items" v-bind:key="id">
